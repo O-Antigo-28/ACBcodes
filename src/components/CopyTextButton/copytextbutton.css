@@ -1,0 +1,17 @@
+.copyTextButton, .copyTextButton-disabled{
+    position: relative;
+    
+}
+
+.copyTextButton:focus{
+    background-color: green;
+}
+.copyTextButton-disabled{
+
+}
+
+.copyTextButtonIcon{ 
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
