@@ -16,7 +16,7 @@ const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...prop
         })
     }, [])
 
-    function handleClick(){
+    function handleCopy(){
         if(hasPermission){
             navigator.clipboard.writeText(textToCopy)
         }
@@ -25,7 +25,7 @@ const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...prop
 
 
     return (
-        <button className={buttonClassName} onClick={handleClick} disabled={!hasPermission} {...props}>
+        <button className={buttonClassName} onFocus={handleCopy} disabled={!hasPermission} {...props}>
             {children}
             {hasPermission && <BsCopy className="copyTextButtonIcon"/> }
         </button>

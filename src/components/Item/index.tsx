@@ -1,4 +1,5 @@
 import { IItem } from "./IItem"
+import "./Item.css"
 
 const Item: React.FC<IItem> = ({children, ...props}) =>{
     return(
