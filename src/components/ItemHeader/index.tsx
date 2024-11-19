@@ -1,5 +1,6 @@
 import Item from "../Item"
 import { IItemHeader } from "./IItemHeader"
+import "./itemheader.css"
  const ItemHeader: React.FC<IItemHeader> = ({children, subtitle}) => { 
     return (
   
