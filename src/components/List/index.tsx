@@ -1,8 +1,9 @@
 import { IList } from "./IList"
-const List: React.FC<IList> = ({children}) => {
+import "./list.css"
+const List: React.FC<IList> = ({children, ...props}) => {
     return (
-        <ul className="List">
-        {children}
+        <ul className="List" {...props}>
+            {children}
         </ul>
     )
 }
