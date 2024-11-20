@@ -25,7 +25,7 @@ const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...prop
 
 
     return (
-        <button className={buttonClassName} onFocus={handleCopy} disabled={!hasPermission} {...props}>
+        <button className={buttonClassName} onFocus={handleCopy} disabled={!hasPermission} type="button" {...props}>
             {children}
             {hasPermission && <BsCopy className="copyTextButtonIcon"/> }
         </button>
