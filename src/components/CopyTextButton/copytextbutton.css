@@ -4,13 +4,15 @@
     border: none;
     transition: all 100ms;
     text-align: left;
+    color: #444;
     margin-left: 50px;
+    border-radius: 5px;
 
 }
 
 .copyTextButton:focus{
    
-    box-shadow: 2px 2px 10px;
+    box-shadow: 2px 2px 8px;
     border: none;
     transform: translateX(-15px);
 
@@ -18,12 +20,16 @@
     color: rgb(89, 89, 89);
     font-weight: bolder;
 
+
 }
+
 .copyTextButton-disabled{
+    background-color: #eee;
 
 }
 
 .copyTextButtonIcon{ 
+
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;

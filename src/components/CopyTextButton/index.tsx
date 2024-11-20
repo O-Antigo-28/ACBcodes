@@ -2,32 +2,41 @@ import React, {useState, useEffect} from "react"
 import { ICopyTextButton } from "./ICopyTextButton"
 import { gettingPromiseOfPermissionStateClipBoard } from "./gettingPromiseOfPermissionClipBoard";
 import { BsCopy } from "react-icons/bs";
+import { writeOnClipBoard } from "../../writeOnClipBoard";
 import "./copytextbutton.css"
 
 const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...props}) => { 
-    const [hasPermission, setHasPermission] = useState(false);
+    const [hasPermissionToWriteInClipboard, setHasPermissionToWriteInClipboard] = useState(false);
 
     useEffect(() => { 
         gettingPromiseOfPermissionStateClipBoard()
         .then(() => {
-            setHasPermission(true)
+            setHasPermissionToWriteInClipboard(true)
         }).catch(() => {
             console.error("não foi possivel pedir permissão")
         })
+        return () => {
+            setHasPermissionToWriteInClipboard(false)
+        }
+
     }, [])
 
-    function handleCopy(){
-        if(hasPermission){
-            navigator.clipboard.writeText(textToCopy)
+    function handleFocus(){
+        if(hasPermissionToWriteInClipboard){
+            try{
+                writeOnClipBoard(textToCopy)
+            } catch(e){
+                console.error(e)
+            }
         }
     }
-    let buttonClassName = hasPermission ? "copyTextButton": "copyTextButton-disabled"
 
+    let buttonClassName = hasPermissionToWriteInClipboard ? "copyTextButton": "copyTextButton-disabled"
 
     return (
-        <button className={buttonClassName} onFocus={handleCopy} disabled={!hasPermission} type="button" {...props}>
+        <button className={buttonClassName} onFocus={handleFocus} disabled={!hasPermissionToWriteInClipboard} type="button" {...props}>
             {children}
-            {hasPermission && <BsCopy className="copyTextButtonIcon"/> }
+            {hasPermissionToWriteInClipboard && <BsCopy className="copyTextButtonIcon"/> }
         </button>
     )
 }
