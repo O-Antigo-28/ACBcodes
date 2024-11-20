@@ -5,7 +5,7 @@ import { BsCopy } from "react-icons/bs";
 import { writeOnClipBoard } from "../../writeOnClipBoard";
 import "./copytextbutton.css"
 
-const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...props}) => { 
+const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy, refCopyTextButton,...props}) => { 
     const [hasPermissionToWriteInClipboard, setHasPermissionToWriteInClipboard] = useState(false);
 
     useEffect(() => { 
@@ -34,7 +34,7 @@ const CopyTextButton: React.FC<ICopyTextButton> = ({children, textToCopy,...prop
     let buttonClassName = hasPermissionToWriteInClipboard ? "copyTextButton": "copyTextButton-disabled"
 
     return (
-        <button className={buttonClassName} onFocus={handleFocus} disabled={!hasPermissionToWriteInClipboard} type="button" {...props}>
+        <button className={buttonClassName} onFocus={handleFocus} ref={refCopyTextButton}  disabled={!hasPermissionToWriteInClipboard} type="button" {...props}>
             {children}
             {hasPermissionToWriteInClipboard && <BsCopy className="copyTextButtonIcon"/> }
         </button>
